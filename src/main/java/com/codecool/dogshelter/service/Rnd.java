@@ -7,7 +7,7 @@ public class Rnd {
     private static Random random = new Random();
 
 
-    public static String randomString(){
+    public static String getString(){
         byte[] array = new byte[7]; // length is bounded by 7
         new Random().nextBytes(array);
         return new String(array, Charset.forName("UTF-8"));
