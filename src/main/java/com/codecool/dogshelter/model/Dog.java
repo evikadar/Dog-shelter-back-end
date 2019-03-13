@@ -6,10 +6,9 @@ public class Dog {
     private String name;
     private int age;
     private DogDescription description;
-    private Status status;
     private Shelter shelter;
     private String photoPath;
-    private boolean isBoy;
+    private Gender gender;
     private boolean isNeutered;
     private Breed breed;
     private DogSize size;
@@ -17,6 +16,10 @@ public class Dog {
     public Dog(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    public Dog() {
+
     }
 
     public int getId() {
@@ -51,14 +54,6 @@ public class Dog {
         this.description = description;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
     public Shelter getShelter() {
         return shelter;
     }
@@ -75,12 +70,12 @@ public class Dog {
         this.photoPath = photoPath;
     }
 
-    public boolean isBoy() {
-        return isBoy;
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setBoy(boolean boy) {
-        isBoy = boy;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public boolean isNeutered() {
