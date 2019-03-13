@@ -1,11 +1,10 @@
 package com.codecool.dogshelter.Util;
 
-import com.codecool.dogshelter.model.Breed;
-import com.codecool.dogshelter.model.Status;
-import org.springframework.util.StringUtils;
+import com.codecool.dogshelter.model.dog.Breed;
+import com.codecool.dogshelter.model.dog.Gender;
+import com.codecool.dogshelter.model.dog.Status;
 
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -37,5 +36,9 @@ public class Rnd {
 
     public static Status getRandomStatus() {
         return Status.values()[random.nextInt(Status.values().length)];
+    }
+
+    public static Gender getRandomGender() {
+        return Gender.values()[random.nextInt(Gender.values().length)];
     }
 }

@@ -21,10 +21,6 @@ public class Dog {
         id = nextId++;
     }
 
-    public Dog() {
-
-    }
-
     public int getId() {
         return id;
     }

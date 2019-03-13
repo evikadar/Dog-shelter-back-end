@@ -1,5 +1,6 @@
 package com.codecool.dogshelter.service;
 
+import com.codecool.dogshelter.Util.Rnd;
 import com.codecool.dogshelter.model.Shelter;
 import com.codecool.dogshelter.model.dog.*;
 import com.sun.org.apache.xpath.internal.operations.Bool;
@@ -47,18 +48,12 @@ public class DogStorage {
                 constructDogDescription(data[2],data[3],data[4]
                 ));
 
-        if(Status.fromString(data[5]).equals(DogSize.INVALID)){
-            throw new Exception("Invalid size type in file");
-        }else{
-            dog.setStatus(Status.fromString(data[5]));
-        }
-
-        dog.setShelter(new Shelter(data[6]));
-        dog.setPhotoPath(data[7]);
-        dog.setBoy(Boolean.parseBoolean(data[8]));
-        dog.setNeutered(Boolean.parseBoolean(data[9]));
-        dog.setBreed(Breed.INVALID);
-        dog.setSize(DogSize.fromString(data[11]));
+        dog.setShelter(new Shelter(data[5]));
+        dog.setPhotoPath(data[6]);
+        dog.setGender(Rnd.getRandomGender());
+        dog.setNeutered(Boolean.parseBoolean(data[7]));
+        dog.setBreed(Rnd.getRandomBreed());
+        dog.setSize(DogSize.fromString(data[9]));
         return dog;
     }
 

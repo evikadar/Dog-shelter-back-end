@@ -1,5 +1,30 @@
 package com.codecool.dogshelter.model.dog;
 
 public enum Breed {
-    INVALID
+    COLLIE("collie"),
+    HUSKY("husky"),
+    LABRADOR("labrador"),
+    RETRIEVER("retriever"),
+    MIXED("mixed"),
+    HOUND("hound"),
+    PUG("pug"),
+    CHIHUAHUA("chihuahua"),
+    BEAGLE("beagle"),
+    JACK_RUSSEL("jack russel terrier"),
+    GERMAN_SHEPHERD("german shepherd"),
+    BORDER_COLLIE("border collie"),
+    REDBONE("redborne coonhound"),
+    TERRIER("terrier");
+
+    private final String breedName;
+
+    Breed(String breedName) {
+        this.breedName = breedName;
+    }
+
+    @Override
+    public String toString() {
+        return breedName;
+    }
 }
+

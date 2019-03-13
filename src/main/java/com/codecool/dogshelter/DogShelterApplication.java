@@ -29,13 +29,7 @@ public class DogShelterApplication {
     @PostConstruct
     private void initData() throws Exception {
         dogStorage.generateDummyData();
-    }
-
-    @PostConstruct
-    private void generateRandomShelterDogs() {
-        for (int i = 0; i < 12; i++) {
-            shelterDogStorage.addRandomShelterDog();
-        }
+        shelterDogStorage.generateShelterDogs();
     }
 
 }
