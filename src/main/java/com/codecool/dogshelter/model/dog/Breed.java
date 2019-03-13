@@ -26,8 +26,7 @@ public enum Breed {
         this.breedName = breedName;
     }
 
-    @Override
-    public String toString() {
+    public String getStringValue() {
         return breedName;
     }
 

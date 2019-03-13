@@ -6,8 +6,7 @@ import java.util.Optional;
 public enum Status {
     AVAILABLE,
     ADOPTED,
-    PENDING,
-    INVALID;
+    PENDING;
 
     public static Status getFromStringIfValid(String status) {
         Optional<Status> found = Arrays.stream(values())
