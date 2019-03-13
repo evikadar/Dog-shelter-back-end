@@ -20,7 +20,7 @@ public class DogShelterApplication {
     @PostConstruct
     private void generateRandomUsers(){
         for (int i = 0; i < 10; i++) {
-            dogStorage.addRandomUser();
+            dogStorage.addRandomDog();
         }
     }
 

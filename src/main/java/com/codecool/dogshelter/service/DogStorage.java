@@ -14,7 +14,7 @@ public class DogStorage {
         return dogs;
     }
 
-    public void addRandomUser() {
+    public void addRandomDog() {
         Dog randomDog = new Dog(
             Rnd.getRandomDogName(), Rnd.getNumber(11)
         );
