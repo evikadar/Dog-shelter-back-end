@@ -5,6 +5,7 @@ import com.codecool.dogshelter.service.DogStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,4 +21,11 @@ public class DogController {
     private List<Dog> getUsers(){
         return dogStorage.getAll();
     }
+
+    @GetMapping("/dog/{id}")
+    private Dog getDog(@PathVariable int id) throws Exception {
+        return dogStorage.getDogById(id);
+    }
+
+
 }

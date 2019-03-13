@@ -70,4 +70,8 @@ public class DogStorage {
         DogStorage dogStorage = new DogStorage();
         dogStorage.generateDummyData();
     }
+
+    public Dog getDogById(int id) throws Exception {
+        return dogs.stream().filter(x -> x.getId() == id).findFirst().orElseThrow(() -> new Exception("Dog not found"));
+    }
 }
