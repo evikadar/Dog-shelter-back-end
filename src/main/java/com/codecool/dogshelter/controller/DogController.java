@@ -1,6 +1,6 @@
 package com.codecool.dogshelter.controller;
 
-import com.codecool.dogshelter.model.Dog;
+import com.codecool.dogshelter.model.dog.Dog;
 import com.codecool.dogshelter.service.DogStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

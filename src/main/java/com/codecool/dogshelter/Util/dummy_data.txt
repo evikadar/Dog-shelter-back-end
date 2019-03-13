@@ -1,0 +1,3 @@
+Bob, 5, Nice, In the sky, big nose, AVAILABLE, K2, puppy.png, true, true, labrador, SMALL
+Mari, 2, I am nice also, I don't know, small nose, AVAILABLE, Bubi, puppy.png, false, true, labrador, MEDIUM
+Marti, 10, smart old man, something, nice, AVAILABLE, K9, puppy.png, true, false, labrador, SMALL

@@ -1,4 +1,4 @@
-package com.codecool.dogshelter.service;
+package com.codecool.dogshelter.Util;
 
 import java.nio.charset.Charset;
 import java.util.Random;
