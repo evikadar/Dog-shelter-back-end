@@ -1,4 +1,4 @@
-package com.codecool.dogshelter.service;
+package com.codecool.dogshelter.Util;
 
 import com.codecool.dogshelter.model.Breed;
 import org.springframework.util.StringUtils;

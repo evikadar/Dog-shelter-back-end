@@ -1,19 +1,16 @@
-package com.codecool.dogshelter.model;
+package com.codecool.dogshelter.model.dog;
 
 public class DogDescription {
-    private String presonalityTrait;
+    private String personalityTrait;
     private String dreamHome;
     private String specialFeatures;
 
-    public DogDescription() {
+    public String getPersonalityTrait() {
+        return personalityTrait;
     }
 
-    public String getPresonalityTrait() {
-        return presonalityTrait;
-    }
-
-    public void setPresonalityTrait(String presonalityTrait) {
-        this.presonalityTrait = presonalityTrait;
+    public void setPersonalityTrait(String personalityTrait) {
+        this.personalityTrait = personalityTrait;
     }
 
     public String getDreamHome() {
