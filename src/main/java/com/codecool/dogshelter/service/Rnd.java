@@ -1,5 +1,8 @@
 package com.codecool.dogshelter.service;
 
+import com.codecool.dogshelter.model.Breed;
+import org.springframework.util.StringUtils;
+
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +28,9 @@ public class Rnd {
 
     public static String getRandomDogName() {
         return names.get(random.nextInt(names.size()));
+    }
 
+    public static Breed getRandomBreed() {
+        return Breed.values()[random.nextInt(Breed.values().length)];
     }
 }
