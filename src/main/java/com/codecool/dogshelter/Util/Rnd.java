@@ -1,10 +1,8 @@
 package com.codecool.dogshelter.Util;
 
-import com.codecool.dogshelter.model.Breed;
-import org.springframework.util.StringUtils;
+import com.codecool.dogshelter.model.dog.Breed;
 
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;

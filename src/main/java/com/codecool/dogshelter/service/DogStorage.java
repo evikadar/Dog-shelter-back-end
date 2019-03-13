@@ -1,12 +1,11 @@
 package com.codecool.dogshelter.service;
 
+import com.codecool.dogshelter.model.dog.Breed;
 import com.codecool.dogshelter.model.Shelter;
 import com.codecool.dogshelter.model.dog.*;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -48,7 +47,7 @@ public class DogStorage {
                 ));
 
         if(Status.getFromStringIfValid(data[5]) == null){
-            throw new Exception("Invalid size type in file");
+            throw new Exception("Invalid status in file");
         }else{
             dog.setStatus(Status.getFromStringIfValid(data[5]));
         }
@@ -57,8 +56,21 @@ public class DogStorage {
         dog.setPhotoPath(data[7]);
         dog.setBoy(Boolean.parseBoolean(data[8]));
         dog.setNeutered(Boolean.parseBoolean(data[9]));
-        dog.setBreed(Breed.INVALID);
-        dog.setSize(DogSize.fromString(data[11]));
+
+
+        if(Breed.getFromStringIfValid(data[10]) == null){
+            throw new Exception("Invalid breed in file");
+        }else{
+            dog.setBreed(Breed.getFromStringIfValid(data[10]));
+        }
+
+
+        if(DogSize.getFromStringIfValid(data[11]) == null){
+            throw new Exception("Invalid size in file");
+        }else{
+            dog.setSize(DogSize.getFromStringIfValid(data[11]));
+        }
+
         return dog;
     }
 

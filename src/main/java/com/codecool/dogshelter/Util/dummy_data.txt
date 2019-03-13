@@ -1,11 +1,11 @@
-Bob, 5, Nice, In the sky, big nose, AVAILABLE, K2, dog1.jpeg, true, true, labrador, SMALL
-Mari, 2, I am nice also, I don't know, small nose, AVAILABLE, Bubi, dog2.jpeg, false, true, labrador, MEDIUM
-Marti, 10, smart old man, something, nice, AVAILABLE, K9, dog3.jpeg, true, false, labrador, SMALL
-Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog4.jpeg, true, false, labrador, SMALL
-Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog5.jpeg, true, false, labrador, SMALL
-Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog6.jpeg, true, false, labrador, SMALL
-Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog7.jpeg, true, false, labrador, SMALL
-Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog8.jpeg, true, false, labrador, SMALL
-Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog9.jpeg, true, false, labrador, SMALL
-Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog10.jpeg, true, false, labrador, SMALL
-Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog11.jpeg, true, false, labrador, SMALL
+Bob, 5, Nice, In the sky, big nose, AVAILABLE, K2, dog1.jpeg, true, true, LABRADOR, SMALL
+Mari, 2, I am nice also, I don't know, small nose, AVAILABLE, Bubi, dog2.jpeg, false, true, MIXED, MEDIUM
+Marti, 10, smart old man, something, nice, AVAILABLE, K9, dog3.jpeg, true, false, CHIHUAHUA, SMALL
+Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog4.jpeg, true, false, REDBONE, SMALL
+Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog5.jpeg, true, false, JACK_RUSSEL, SMALL
+Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog6.jpeg, true, false, GERMAN_SHEPHERD, SMALL
+Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog7.jpeg, true, false, RETRIEVER, SMALL
+Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog8.jpeg, true, false, PUG, SMALL
+Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog9.jpeg, true, false, BEAGLE, SMALL
+Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog10.jpeg, true, false, LABRADOR, SMALL
+Bella, 3, under the bridge, nothing, she is a nice girl, AVAILABLE, K9, dog11.jpeg, true, false, TERRIER, SMALL
