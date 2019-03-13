@@ -1,6 +1,7 @@
 package com.codecool.dogshelter.service;
 
 import com.codecool.dogshelter.model.Dog;
+import com.codecool.dogshelter.model.DogDescription;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -19,6 +20,7 @@ public class DogStorage {
             Rnd.getRandomDogName(), Rnd.getNumber(11)
         );
         randomDog.setBreed(Rnd.getRandomBreed());
+        randomDog.setDescription(new DogDescription());
         randomDog.setId(id);
         randomDog.setPhotoPath("http://localhost:8080/img/dog" + id + ".jpeg");
         dogs.add(randomDog);
