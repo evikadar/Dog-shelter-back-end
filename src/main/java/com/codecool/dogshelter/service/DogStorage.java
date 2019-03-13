@@ -63,7 +63,11 @@ public class DogStorage {
     }
 
     private DogDescription constructDogDescription(String personalityTrait, String dreamHome, String specialFeatures) {
-        return null;
+        DogDescription description = new DogDescription();
+        description.setPersonalityTrait(personalityTrait);
+        description.setDreamHome(dreamHome);
+        description.setSpecialFeatures(specialFeatures);
+        return description;
     }
 
     public static void main(String[] args) throws Exception {
