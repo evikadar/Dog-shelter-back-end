@@ -1,5 +1,6 @@
 package com.codecool.dogshelter;
 
+import com.codecool.dogshelter.model.dog.Dog;
 import com.codecool.dogshelter.service.DogStorage;
 import com.codecool.dogshelter.service.ShelterDogStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
+import java.io.FileNotFoundException;
+import java.util.LinkedList;
+import java.util.List;
+
 
 @SpringBootApplication
 public class DogShelterApplication {
@@ -22,10 +27,8 @@ public class DogShelterApplication {
     }
 
     @PostConstruct
-    private void generateRandomUsers(){
-        for (int i = 0; i < 10; i++) {
-            dogStorage.addRandomUser();
-        }
+    private void initData() throws Exception {
+        dogStorage.generateDummyData();
     }
 
     @PostConstruct
