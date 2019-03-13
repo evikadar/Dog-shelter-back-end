@@ -1,6 +1,7 @@
 package com.codecool.dogshelter.service;
 
 import com.codecool.dogshelter.model.Breed;
+import com.codecool.dogshelter.model.Status;
 import org.springframework.util.StringUtils;
 
 import java.nio.charset.Charset;
@@ -16,13 +17,13 @@ public class Rnd {
             "Bogyó", "Penny", "Gofri", "Maki", "Goldie", "Berke");
 
 
-
-    public static String getString(){
+    public static String getString() {
         byte[] array = new byte[7]; // length is bounded by 7
         new Random().nextBytes(array);
         return new String(array, Charset.forName("UTF-8"));
     }
-    public static int getNumber(int upperbound){
+
+    public static int getNumber(int upperbound) {
         return random.nextInt(upperbound);
     }
 
@@ -32,5 +33,9 @@ public class Rnd {
 
     public static Breed getRandomBreed() {
         return Breed.values()[random.nextInt(Breed.values().length)];
+    }
+
+    public static Status getRandomStatus() {
+        return Status.values()[random.nextInt(Status.values().length)];
     }
 }
