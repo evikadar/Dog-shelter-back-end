@@ -1,6 +1,7 @@
 package com.codecool.dogshelter.model.dog;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public enum DogSize {
     EXTRA_SMALL,
@@ -10,15 +11,10 @@ public enum DogSize {
     EXTRA_LARGE,
     INVALID;
 
-    public static DogSize fromString(String size){
-        switch (size){
-            case "EXTRA_SMALL": return EXTRA_SMALL;
-            case "SMALL": return SMALL;
-            case "MEDIUM": return MEDIUM;
-            case "LARGE": return LARGE;
-            case "EXTRA_LARGE": return EXTRA_LARGE;
-            default:
-                return INVALID;
-        }
+    public static DogSize getFromStringIfValid(String size) {
+        Optional<DogSize> found = Arrays.stream(values())
+                .filter(s -> s.toString().equals(size))
+                .findFirst();
+        return found.orElse(null);
     }
 }
