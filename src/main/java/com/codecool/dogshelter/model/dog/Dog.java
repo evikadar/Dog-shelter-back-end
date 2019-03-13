@@ -1,6 +1,10 @@
-package com.codecool.dogshelter.model;
+package com.codecool.dogshelter.model.dog;
+
+import com.codecool.dogshelter.model.Shelter;
 
 public class Dog {
+
+    private static int nextId;
 
     private int id;
     private String name;
@@ -14,9 +18,8 @@ public class Dog {
     private Breed breed;
     private DogSize size;
 
-    public Dog(String name, int age) {
-        this.name = name;
-        this.age = age;
+    public Dog() {
+        id = nextId++;
     }
 
     public int getId() {
