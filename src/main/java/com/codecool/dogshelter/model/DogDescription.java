@@ -5,6 +5,9 @@ public class DogDescription {
     private String dreamHome;
     private String specialFeatures;
 
+    public DogDescription() {
+    }
+
     public String getPresonalityTrait() {
         return presonalityTrait;
     }
