@@ -1,19 +1,18 @@
 package com.codecool.dogshelter.model.dog;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum Status {
     AVAILABLE,
     ADOPTED,
     PENDING,
     INVALID;
 
-    public static Status fromString(String size){
-        switch (size){
-            case "AVAILABLE": return AVAILABLE;
-            case "ADOPTED": return ADOPTED;
-            case "PENDING": return PENDING;
-
-            default:
-                return INVALID;
-        }
+    public static Status getFromStringIfValid(String status) {
+        Optional<Status> found = Arrays.stream(values())
+                .filter(s -> s.toString().equals(status))
+                .findFirst();
+        return found.orElse(null);
     }
 }

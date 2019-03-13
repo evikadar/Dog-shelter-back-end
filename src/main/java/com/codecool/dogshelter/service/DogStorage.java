@@ -47,10 +47,10 @@ public class DogStorage {
                 constructDogDescription(data[2],data[3],data[4]
                 ));
 
-        if(Status.fromString(data[5]).equals(DogSize.INVALID)){
+        if(Status.getFromStringIfValid(data[5]) == null){
             throw new Exception("Invalid size type in file");
         }else{
-            dog.setStatus(Status.fromString(data[5]));
+            dog.setStatus(Status.getFromStringIfValid(data[5]));
         }
 
         dog.setShelter(new Shelter(data[6]));
