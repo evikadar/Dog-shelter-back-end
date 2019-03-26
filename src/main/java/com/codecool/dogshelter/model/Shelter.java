@@ -1,17 +1,33 @@
 package com.codecool.dogshelter.model;
 
+import com.codecool.dogshelter.model.dog.Dog;
+import lombok.*;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Data
+@Builder
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Shelter {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column
     private String name;
 
-    public Shelter(String name) {
-        this.name = name;
-    }
 
-    public String getName() {
-        return name;
-    }
+    @OneToMany(mappedBy = "shelter", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @Singular
+    @EqualsAndHashCode.Exclude
+    private List<Dog> dogs;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+
+
+
+
 }

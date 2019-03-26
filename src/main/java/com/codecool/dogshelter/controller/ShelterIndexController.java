@@ -1,8 +1,9 @@
 package com.codecool.dogshelter.controller;
 
 
-import com.codecool.dogshelter.model.dog.ShelterDog;
-import com.codecool.dogshelter.service.ShelterDogStorage;
+import com.codecool.dogshelter.model.dog.Dog;
+import com.codecool.dogshelter.repository.DogRepository;
+import com.codecool.dogshelter.repository.ShelterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +16,15 @@ import java.util.List;
 public class ShelterIndexController {
 
     @Autowired
-    ShelterDogStorage shelterDogStorage;
+    ShelterRepository shelterRepository;
+
+    @Autowired
+    DogRepository dogRepository;
 
     @GetMapping("/shelter/index")
-    private List<ShelterDog> shelterDogs() {
-        return shelterDogStorage.getAllShelterDogs();
+    private List<Dog> shelterDogs() {
+        // TODO: write query for this to return dogs of certain shelters
+        return dogRepository.findAll();
     }
 
 }
