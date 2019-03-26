@@ -2,6 +2,7 @@ package com.codecool.dogshelter.model.dog;
 
 import com.codecool.dogshelter.model.Person;
 import com.codecool.dogshelter.model.shelter.Shelter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Dog {
     private boolean isNeutered;
 
     @ManyToOne
+    @JsonIgnoreProperties({"dogs"})
     private Shelter shelter;
 
     @Transient

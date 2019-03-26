@@ -19,13 +19,7 @@ import org.springframework.context.annotation.Profile;
 public class DogShelterApplication {
 
     @Autowired
-    private DogRepository dogRepository;
-
-    @Autowired
     private ShelterRepository shelterRepository;
-
-    @Autowired
-    private AddressRepository addressRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(DogShelterApplication.class, args);
@@ -35,17 +29,18 @@ public class DogShelterApplication {
     @Bean
     public CommandLineRunner init() {
         return args -> {
-            //Dog bobby = Dog.builder().age(5).breed(Breed.CHIHUAHUA).name("Bobby").build();
+            Dog bobby = Dog.builder().age(5).breed(Breed.CHIHUAHUA).name("Bobby").build();
 
-            //Address noe_address = Address.builder().country("Hungary").city("Budapest").address("Csordakút út 23.")
-            //        .zipCode(1171).build();
+            Address noe_address = Address.builder().country("Hungary").city("Budapest").address("Csordakút út 23.")
+                    .zipCode(1171).build();
 
             Shelter noe = Shelter.builder().email("noe@gmail.com").phoneNumber("555-7777").name("Noé Állatotthon")
-                    //.address(noe_address).dog(bobby)
+                    .address(noe_address)
+                    .dog(bobby)
                     .build();
 
 
-            //bobby.setShelter(noe);
+            bobby.setShelter(noe);
             shelterRepository.save(noe);
 
         };

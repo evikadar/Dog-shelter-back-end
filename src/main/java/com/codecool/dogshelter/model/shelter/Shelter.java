@@ -1,6 +1,7 @@
 package com.codecool.dogshelter.model.shelter;
 
 import com.codecool.dogshelter.model.dog.Dog;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,10 +27,12 @@ public class Shelter {
     private String photoPath;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @JsonIgnoreProperties({"shelter"})
     private Address address;
 
     @OneToMany(mappedBy = "shelter", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @Singular
     @EqualsAndHashCode.Exclude
+    @JsonIgnoreProperties({"shelter"})
     private List<Dog> dogs;
 }
