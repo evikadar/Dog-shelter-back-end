@@ -25,6 +25,7 @@ public class Shelter {
     private String email;
     private String phoneNumber;
     private String photoPath;
+    private String shelterDescription;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JsonIgnoreProperties({"shelter"})
