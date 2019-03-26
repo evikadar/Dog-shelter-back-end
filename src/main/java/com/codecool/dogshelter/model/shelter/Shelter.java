@@ -1,4 +1,4 @@
-package com.codecool.dogshelter.model;
+package com.codecool.dogshelter.model.shelter;
 
 import com.codecool.dogshelter.model.dog.Dog;
 import lombok.*;
@@ -17,17 +17,19 @@ public class Shelter {
     @GeneratedValue
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private String email;
+    private String phoneNumber;
+    private String photoPath;
+
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private Address address;
 
     @OneToMany(mappedBy = "shelter", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @Singular
     @EqualsAndHashCode.Exclude
     private List<Dog> dogs;
-
-
-
-
-
 }
