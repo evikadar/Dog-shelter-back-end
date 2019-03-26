@@ -1,6 +1,7 @@
 package com.codecool.dogshelter.model;
 
 import com.codecool.dogshelter.model.dog.Dog;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Shelter {
     @OneToMany(mappedBy = "shelter", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @Singular
     @EqualsAndHashCode.Exclude
+    @JsonIgnoreProperties({"shelter"})
     private List<Dog> dogs;
 
 
