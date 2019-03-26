@@ -1,8 +1,10 @@
 package com.codecool.dogshelter;
 
+import com.codecool.dogshelter.model.Shelter;
 import com.codecool.dogshelter.model.dog.Breed;
 import com.codecool.dogshelter.model.dog.Dog;
 import com.codecool.dogshelter.repository.DogRepository;
+import com.codecool.dogshelter.repository.ShelterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +19,9 @@ public class DogShelterApplication {
     @Autowired
     private DogRepository dogRepository;
 
+    @Autowired
+    private ShelterRepository shelterRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(DogShelterApplication.class, args);
     }
@@ -27,6 +32,9 @@ public class DogShelterApplication {
         return args -> {
             Dog bobby = Dog.builder().age(5).breed(Breed.CHIHUAHUA).name("Bobby").build();
             dogRepository.save(bobby);
+
+            Shelter noe = Shelter.builder().name("Noé Állatotthon").build();
+            shelterRepository.save(noe);
 
         };
     }
