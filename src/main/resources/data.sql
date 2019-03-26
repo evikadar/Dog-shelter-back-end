@@ -32,20 +32,20 @@ VALUES (5, 'Nice boys around', 'nice girl', 'Nothing :(');
 
 INSERT INTO DOG("ID", "BREED", "GENDER", "IS_NEUTERED", "NAME", "PHOTO_PATH", "SIZE", "STATUS", "DESCRIPTION_ID",
                 "SHELTER_ID")
-VALUES (1, 'COLLIE', 'MALE', true, 'Quincy', 'static/img/dog1.jpeg', 'EXTRA_SMALL', 'AVAILABLE', 1, 1);
+VALUES (1, 'COLLIE', 'MALE', true, 'Quincy', 'img/dog1.jpeg', 'EXTRA_SMALL', 'AVAILABLE', 1, 1);
 
 INSERT INTO DOG("ID", "BREED", "GENDER", "IS_NEUTERED", "NAME", "PHOTO_PATH", "SIZE", "STATUS", "DESCRIPTION_ID",
                 "SHELTER_ID")
-VALUES (2, 'MIXED', 'FEMALE', false, 'Gemma', 'static/img/dog2.jpeg', 'MEDIUM', 'ADOPTED', 2, 2);
+VALUES (2, 'MIXED', 'FEMALE', false, 'Gemma', 'img/dog2.jpeg', 'MEDIUM', 'ADOPTED', 2, 2);
 
 INSERT INTO DOG("ID", "BREED", "GENDER", "IS_NEUTERED", "NAME", "PHOTO_PATH", "SIZE", "STATUS", "DESCRIPTION_ID",
                 "SHELTER_ID")
-VALUES (3, 'CHIHUAHUA', 'MALE', true, 'Bradley', 'static/img/dog3.jpeg', 'SMALL', 'AVAILABLE', 3, 1);
+VALUES (3, 'CHIHUAHUA', 'MALE', true, 'Bradley', 'img/dog3.jpeg', 'SMALL', 'AVAILABLE', 3, 1);
 
 INSERT INTO DOG("ID", "BREED", "GENDER", "IS_NEUTERED", "NAME", "PHOTO_PATH", "SIZE", "STATUS", "DESCRIPTION_ID",
                 "SHELTER_ID")
-VALUES (4, 'TERRIER', 'FEMALE', false, 'Karen', 'static/img/dog4.jpeg', 'LARGE', 'AVAILABLE', 4, 2);
+VALUES (4, 'TERRIER', 'FEMALE', false, 'Karen', 'img/dog4.jpeg', 'LARGE', 'AVAILABLE', 4, 2);
 
 INSERT INTO DOG("ID", "BREED", "GENDER", "IS_NEUTERED", "NAME", "PHOTO_PATH", "SIZE", "STATUS", "DESCRIPTION_ID",
                 "SHELTER_ID")
-VALUES (5, 'GERMAN_SHEPHERD', 'FEMALE', true, 'Claire', 'static/img/dog5.jpeg', 'EXTRA_LARGE', 'ADOPTED', 5, 1);
+VALUES (5, 'GERMAN_SHEPHERD', 'FEMALE', true, 'Claire', 'img/dog5.jpeg', 'EXTRA_LARGE', 'ADOPTED', 5, 1);
