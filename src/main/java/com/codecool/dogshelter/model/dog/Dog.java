@@ -1,103 +1,50 @@
 package com.codecool.dogshelter.model.dog;
 
+import com.codecool.dogshelter.model.Person;
 import com.codecool.dogshelter.model.Shelter;
+import lombok.*;
 
+import javax.persistence.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
+@Entity
 public class Dog {
 
-    private static int nextId;
+    @GeneratedValue
+    @Id
+    private Long id;
 
-    private int id;
     private String name;
-    private int age;
+
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private DogDescription description;
-    private Shelter shelter;
+
     private String photoPath;
-    private Gender gender;
     private boolean isNeutered;
+
+    @ManyToOne
+    private Shelter shelter;
+
+    @Transient
+    private int age;
+
+    @Enumerated(EnumType.STRING)
     private Breed breed;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    @Enumerated(EnumType.STRING)
     private DogSize size;
 
-    public Dog() {
-        id = nextId++;
-    }
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
-    public int getId() {
-        return id;
-    }
+    // private Person ownerCandidate;
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public DogDescription getDescription() {
-        return description;
-    }
-
-    public void setDescription(DogDescription description) {
-        this.description = description;
-    }
-
-    public Shelter getShelter() {
-        return shelter;
-    }
-
-    public void setShelter(Shelter shelter) {
-        this.shelter = shelter;
-    }
-
-    public String getPhotoPath() {
-        return photoPath;
-    }
-
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public boolean isNeutered() {
-        return isNeutered;
-    }
-
-    public void setNeutered(boolean neutered) {
-        isNeutered = neutered;
-    }
-
-    public Breed getBreed() {
-        return breed;
-    }
-
-    public void setBreed(Breed breed) {
-        this.breed = breed;
-    }
-
-    public DogSize getSize() {
-        return size;
-    }
-
-    public void setSize(DogSize size) {
-        this.size = size;
-    }
 }
