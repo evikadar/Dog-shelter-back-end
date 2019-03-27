@@ -1,6 +1,6 @@
 package com.codecool.dogshelter.model.dog;
 
-import com.codecool.dogshelter.model.Shelter;
+import com.codecool.dogshelter.model.shelter.Shelter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
