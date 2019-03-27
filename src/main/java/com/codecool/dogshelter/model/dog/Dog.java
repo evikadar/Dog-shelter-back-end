@@ -1,9 +1,11 @@
 package com.codecool.dogshelter.model.dog;
 
-import com.codecool.dogshelter.model.Person;
-import com.codecool.dogshelter.model.shelter.Shelter;
+import com.codecool.dogshelter.model.Shelter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -21,6 +23,7 @@ public class Dog {
     private String name;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @JsonIgnoreProperties({"dog"})
     private DogDescription description;
 
     private String photoPath;
@@ -45,7 +48,6 @@ public class Dog {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    // private Person ownerCandidate;
 
 
 
