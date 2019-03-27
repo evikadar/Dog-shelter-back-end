@@ -3,6 +3,7 @@ package com.codecool.dogshelter.controller;
 
 import com.codecool.dogshelter.model.shelter.Shelter;
 import com.codecool.dogshelter.model.dog.Dog;
+import com.codecool.dogshelter.model.shelter.ShelterDetails;
 import com.codecool.dogshelter.repository.DogRepository;
 import com.codecool.dogshelter.repository.ShelterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,8 @@ public class ShelterIndexController {
     }
 
     @GetMapping("/shelter/{id}")
-    private Shelter shelterDetails(@PathVariable Long id){
-        Shelter shelterDetailsById = shelterRepository.getShelterDetailsById(id);
-        return shelterDetailsById;
+    private List<ShelterDetails> shelterDetails(@PathVariable Long id){
+        return shelterRepository.findByShelterId(1L);
     }
 
 }

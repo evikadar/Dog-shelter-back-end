@@ -1,6 +1,7 @@
 package com.codecool.dogshelter.model.shelter;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -26,6 +27,7 @@ public class Address {
 
     @OneToOne(mappedBy = "address")
     @EqualsAndHashCode.Exclude
+    @JsonIgnoreProperties("address")
     private Shelter shelter;
 
 }
