@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class SearchParameters {
 
     private Boolean isNeutered;
-    private Integer age;
+    private Long age;
     private Breed breed;
     private Gender gender;
     private DogSize dogSize;

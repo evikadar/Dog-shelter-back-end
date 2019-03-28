@@ -1,12 +1,13 @@
 package com.codecool.dogshelter.controller;
 
-import com.codecool.dogshelter.model.User;
-import com.codecool.dogshelter.model.dog.Dog;
+import com.codecool.dogshelter.model.dog.DogForDogListPage;
+import com.codecool.dogshelter.model.dog.DogForDogPage;
 import com.codecool.dogshelter.repository.DogRepository;
-import com.codecool.dogshelter.repository.UserRepository;
 import com.codecool.dogshelter.service.DogFilterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,23 +25,23 @@ public class DogController {
     // TODO: Return only dogs with available status
     @RequestMapping("/dogs")
     @GetMapping("/dogs")
-    private List<Dog> getDogs(){
-        return dogRepository.findAll();
+    private List<DogForDogListPage> getDogs(){
+        return dogRepository.getDogsForDogListPage();
     }
 
     @PostMapping("/dogs")
-    private List<Dog> getFilterdDogs(@RequestBody SearchParameters searchParameters) {
+    private List<DogForDogListPage> getFilterdDogs(@RequestBody SearchParameters searchParameters) {
         return dogFilterService.getFilterDogs(searchParameters);
     }
 
     @GetMapping("/dog/{id}")
-    private Dog getDog(@PathVariable Long id) throws Exception {
-        Optional<Dog> searchedDog = dogRepository.findById(id);
+    private DogForDogPage getDog(@PathVariable Long id) {
+
+        Optional<DogForDogPage> searchedDog = dogRepository.getDogDetailsForDogPageById(id);
         if (!searchedDog.isPresent()) {
-            throw new Exception("I could not find a dog by this Id.");
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "No available dog by this ID.");
         }
         return searchedDog.get();
     }
-
-
 }
