@@ -1,17 +1,12 @@
 package com.codecool.dogshelter.model.dog;
 
-import com.codecool.dogshelter.model.shelter.ShelterMinimalInfo;
 import org.springframework.beans.factory.annotation.Value;
 
-import java.time.LocalDate;
-
-public interface DogDetailsForDogPage {
+public interface DogForDogListPage {
 
     Long getId();
 
     String getName();
-
-    SimpleDogDescription getDescription();
 
     String getPhotoPath();
 
@@ -19,13 +14,9 @@ public interface DogDetailsForDogPage {
 
     Gender getGender();
 
-    ShelterMinimalInfo getShelter();
-
     boolean isNeutered();
 
     DogSize getSize();
-
-    LocalDate getDateOfBirth();
 
     @Value("#{target.getAge()}")
     Long getAge();

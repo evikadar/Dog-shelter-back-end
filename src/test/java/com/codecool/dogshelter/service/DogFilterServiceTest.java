@@ -25,7 +25,7 @@ public class DogFilterServiceTest {
                 .breed(Breed.COLLIE)
                 .build();
 
-        List<DogDetailsForDogListPage> filterDogs = dogFilterService.getFilterDogs(parameters);
+        List<DogForDogListPage> filterDogs = dogFilterService.getFilterDogs(parameters);
         assertThat(filterDogs).hasSize(2);
     }
 
@@ -35,7 +35,7 @@ public class DogFilterServiceTest {
                 .isNeutered(true)
                 .build();
 
-        List<DogDetailsForDogListPage> filterDogs = dogFilterService.getFilterDogs(parameters);
+        List<DogForDogListPage> filterDogs = dogFilterService.getFilterDogs(parameters);
         assertThat(filterDogs).hasSize(3);
         assertThat(filterDogs.get(0).isNeutered()).isEqualTo(true);
     }
@@ -49,7 +49,7 @@ public class DogFilterServiceTest {
                 .gender(Gender.MALE)
                 .build();
 
-        List<DogDetailsForDogListPage> filterDogs = dogFilterService.getFilterDogs(parameters);
+        List<DogForDogListPage> filterDogs = dogFilterService.getFilterDogs(parameters);
         assertThat(filterDogs).hasSize(1);
         assertThat(filterDogs.get(0).getName()).isEqualTo("Bob");
     }

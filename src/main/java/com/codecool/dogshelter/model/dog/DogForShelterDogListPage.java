@@ -1,6 +1,6 @@
 package com.codecool.dogshelter.model.dog;
 
-public interface DogDetailsForShelterDogListPage {
+public interface DogForShelterDogListPage {
 
     Long getId();
 
