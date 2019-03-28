@@ -12,6 +12,7 @@
     <artifactId>dog-shelter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>dog-shelter</name>
+
     <description>Demo project for Spring Boot</description>
 
     <properties>

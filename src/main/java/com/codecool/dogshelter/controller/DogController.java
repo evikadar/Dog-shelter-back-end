@@ -23,6 +23,7 @@ public class DogController {
     private DogFilterService dogFilterService;
 
     // TODO: Return only dogs with available status
+    @RequestMapping("/dogs")
     @GetMapping("/dogs")
     private List<DogForDogListPage> getDogs(){
         return dogRepository.getDogsForDogListPage();
