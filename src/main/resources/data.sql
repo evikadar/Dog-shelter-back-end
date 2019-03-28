@@ -1,4 +1,3 @@
-
 -- Shelter
 
 INSERT INTO SHELTER("ID", "NAME")
@@ -28,6 +27,9 @@ VALUES (4, 'With a big pool', 'short nails', 'Killer');
 INSERT INTO DOG_DESCRIPTION("ID", "DREAM_HOME", "PERSONALITY_TRAIT", "SPECIAL_FEATURES")
 VALUES (5, 'Nice boys around', 'nice girl', 'Nothing :(');
 
+INSERT INTO DOG_DESCRIPTION("ID", "DREAM_HOME", "PERSONALITY_TRAIT", "SPECIAL_FEATURES")
+VALUES (6, 'Bobababa', 'halala', 'BOOOOOO');
+
 
 -- Dogs
 
@@ -50,3 +52,7 @@ VALUES (4, 'TERRIER', 'FEMALE', false, 'Karen', 'img/dog4.jpeg', 'LARGE', 'AVAIL
 INSERT INTO DOG("ID", "BREED", "GENDER", "IS_NEUTERED", "NAME", "PHOTO_PATH", "SIZE", "STATUS", "DESCRIPTION_ID",
                 "SHELTER_ID")
 VALUES (5, 'GERMAN_SHEPHERD', 'FEMALE', true, 'Claire', 'img/dog5.jpeg', 'EXTRA_LARGE', 'ADOPTED', 5, 1);
+
+INSERT INTO DOG("ID", "BREED", "GENDER", "IS_NEUTERED", "NAME", "PHOTO_PATH", "SIZE", "STATUS", "DESCRIPTION_ID",
+                "SHELTER_ID")
+VALUES (6, 'COLLIE', 'MALE', false, 'Bob', 'img/dog6.jpeg', 'LARGE', 'AVAILABLE', 6, 1);
