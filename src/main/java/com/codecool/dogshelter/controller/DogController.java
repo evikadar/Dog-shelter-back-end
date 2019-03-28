@@ -30,7 +30,7 @@ public class DogController {
     }
 
     @PostMapping("/dogs")
-    private List<Dog> getFilterdDogs(@RequestBody SearchParameters searchParameters) {
+    private List<DogDetailsForDogListPage> getFilterdDogs(@RequestBody SearchParameters searchParameters) {
         return dogFilterService.getFilterDogs(searchParameters);
     }
 

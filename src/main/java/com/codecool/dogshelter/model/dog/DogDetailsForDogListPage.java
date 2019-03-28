@@ -14,6 +14,10 @@ public interface DogDetailsForDogListPage {
 
     Gender getGender();
 
+    boolean isNeutered();
+
+    DogSize getSize();
+
     @Value("#{target.getAge()}")
     Long getAge();
 

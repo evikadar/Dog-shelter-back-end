@@ -1,7 +1,7 @@
 package com.codecool.dogshelter.service;
 
 import com.codecool.dogshelter.controller.SearchParameters;
-import com.codecool.dogshelter.model.dog.Dog;
+import com.codecool.dogshelter.model.dog.DogDetailsForDogListPage;
 import com.codecool.dogshelter.repository.DogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,8 @@ public class DogFilterService {
     @Autowired
     private DogRepository dogRepository;
 
-    public List<Dog> getFilterDogs(SearchParameters params) {
-        List<Dog> filteredDogs = dogRepository.findAll();
+    public List<DogDetailsForDogListPage> getFilterDogs(SearchParameters params) {
+        List<DogDetailsForDogListPage> filteredDogs = dogRepository.getDogsForDogListPage();
 
         if (params.getIsNeutered() != null) {
             filteredDogs = filteredDogs.stream()
