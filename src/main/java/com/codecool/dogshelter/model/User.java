@@ -20,9 +20,11 @@ public class User {
     @Id
     private Long id;
 
-    private String userName;
+    private String username;
     private String email;
-    private String pw1;
-    private String pw2;
+    // TODO: there should be only one password and it should be validated by react on the frontend!
+    // TODO: hash everything
+    private String password1;
+    private String password2;
 
 }
