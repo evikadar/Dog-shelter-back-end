@@ -1,5 +1,7 @@
 package com.codecool.dogshelter.model.dog;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public interface DogForShelterDogListPage {
 
     Long getId();
@@ -13,5 +15,12 @@ public interface DogForShelterDogListPage {
     Gender getGender();
 
     Status getStatus();
+
+    DogSize getSize();
+
+    boolean isNeutered();
+
+    @Value("#{target.getAge()}")
+    Long getAge();
 
 }
