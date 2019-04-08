@@ -1,6 +1,6 @@
 package com.codecool.dogshelter.service;
 
-import com.codecool.dogshelter.controller.SearchParameters;
+import com.codecool.dogshelter.model.SearchParameters;
 import com.codecool.dogshelter.model.dog.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
