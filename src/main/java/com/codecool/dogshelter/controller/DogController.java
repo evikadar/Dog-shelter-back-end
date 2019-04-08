@@ -1,5 +1,6 @@
 package com.codecool.dogshelter.controller;
 
+import com.codecool.dogshelter.model.SearchParameters;
 import com.codecool.dogshelter.model.dog.DogForDogListPage;
 import com.codecool.dogshelter.model.dog.DogForDogPage;
 import com.codecool.dogshelter.repository.DogRepository;

@@ -1,6 +1,6 @@
 package com.codecool.dogshelter.service;
 
-import com.codecool.dogshelter.controller.SearchParameters;
+import com.codecool.dogshelter.model.SearchParameters;
 import com.codecool.dogshelter.model.dog.DogForDogListPage;
 import com.codecool.dogshelter.repository.DogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +25,7 @@ public class DogFilterService {
         }
 
         if (params.getAge() != null) {
-            filteredDogs = filteredDogs.stream()
-                    .filter(dog -> dog.getAge() == params.getAge())
-                    .collect(Collectors.toList());
+            filteredDogs = filterByAge(filteredDogs, params);
         }
 
         if (params.getBreed() != null) {
@@ -49,6 +47,33 @@ public class DogFilterService {
         }
 
         return filteredDogs;
+    }
+
+    private List<DogForDogListPage> filterByAge(List<DogForDogListPage> dogs, SearchParameters params){
+        String ageBound = params.getAge();
+
+        if(ageBound.equals("PUPPY")){
+            dogs = dogs.stream()
+                    .filter(dog -> dog.getAge() <= 1)
+                    .collect(Collectors.toList());
+
+        }else if(ageBound.equals("YOUNG")){
+            dogs = dogs.stream()
+                    .filter(dog -> dog.getAge() > 1 && dog.getAge() <= 2)
+                    .collect(Collectors.toList());
+
+        }else if(ageBound.equals("ADULT")){
+            dogs = dogs.stream()
+                    .filter(dog -> dog.getAge() > 2 && dog.getAge() <= 8)
+                    .collect(Collectors.toList());
+
+        }else if(ageBound.equals("SENIOR")){
+            dogs = dogs.stream()
+                    .filter(dog -> dog.getAge() > 8)
+                    .collect(Collectors.toList());
+        }
+
+        return dogs;
     }
 
 }
