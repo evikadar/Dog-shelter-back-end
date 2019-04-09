@@ -11,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.Controller;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@EnableWebMvc
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 public class LoginController {

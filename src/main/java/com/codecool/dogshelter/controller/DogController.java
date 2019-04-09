@@ -1,12 +1,15 @@
 package com.codecool.dogshelter.controller;
 
+import com.codecool.dogshelter.model.dog.Dog;
 import com.codecool.dogshelter.model.dog.DogForDogListPage;
 import com.codecool.dogshelter.model.dog.DogForDogPage;
 import com.codecool.dogshelter.repository.DogRepository;
 import com.codecool.dogshelter.service.DogFilterService;
+import com.codecool.dogshelter.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -21,6 +24,9 @@ public class DogController {
 
     @Autowired
     private DogFilterService dogFilterService;
+
+    @Autowired
+    private FileStorageService fileStorageService;
 
     // TODO: Return only dogs with available status
     @RequestMapping("/dogs")
@@ -44,4 +50,13 @@ public class DogController {
         }
         return searchedDog.get();
     }
+
+    @PostMapping(value = "/shelter/dog")
+    @ResponseStatus(HttpStatus.CREATED)
+    private void saveNewDog(@RequestParam("file") MultipartFile file, @RequestParam("shelterId") String shelterId, @RequestParam ("name") String name, @RequestParam("breed") String breed) {
+        String fileName = fileStorageService.storeFile(file);
+        //dogRepository.save(dog);
+
+    }
+
 }
