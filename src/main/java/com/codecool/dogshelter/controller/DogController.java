@@ -45,4 +45,9 @@ public class DogController {
         }
         return searchedDog.get();
     }
+
+    @GetMapping("/dogs/shelter/{id}")
+    private List<DogForDogListPage> getDogsByShelterId(@PathVariable Long id){
+        return dogRepository.getDogsFilteredByShelterId(id);
+    }
 }
