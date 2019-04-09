@@ -1,4 +1,4 @@
-package com.codecool.dogshelter.controller;
+package com.codecool.dogshelter.model;
 
 import com.codecool.dogshelter.model.dog.Breed;
 import com.codecool.dogshelter.model.dog.DogSize;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class SearchParameters {
 
     private Boolean isNeutered;
-    private Integer age;
+    private String age;
     private Breed breed;
     private Gender gender;
     private DogSize dogSize;

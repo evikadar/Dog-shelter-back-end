@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,9 +35,6 @@ public class Dog {
     @JsonIgnoreProperties({"dogs"})
     private Shelter shelter;
 
-    @Transient
-    private int age;
-
     @Enumerated(EnumType.STRING)
     private Breed breed;
 
@@ -48,7 +47,14 @@ public class Dog {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Column(nullable = false)
+    private LocalDate dateOfBirth;
 
+    public Long getAge() {
 
-
+        if (dateOfBirth != null) {
+            return ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
+        }
+        return null;
+    }
 }

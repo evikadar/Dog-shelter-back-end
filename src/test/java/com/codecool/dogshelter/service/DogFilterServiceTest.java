@@ -1,10 +1,7 @@
 package com.codecool.dogshelter.service;
 
-import com.codecool.dogshelter.controller.SearchParameters;
-import com.codecool.dogshelter.model.dog.Breed;
-import com.codecool.dogshelter.model.dog.Dog;
-import com.codecool.dogshelter.model.dog.DogSize;
-import com.codecool.dogshelter.model.dog.Gender;
+import com.codecool.dogshelter.model.SearchParameters;
+import com.codecool.dogshelter.model.dog.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +25,7 @@ public class DogFilterServiceTest {
                 .breed(Breed.COLLIE)
                 .build();
 
-        List<Dog> filterDogs = dogFilterService.getFilterDogs(parameters);
+        List<DogForDogListPage> filterDogs = dogFilterService.getFilterDogs(parameters);
         assertThat(filterDogs).hasSize(2);
     }
 
@@ -38,7 +35,7 @@ public class DogFilterServiceTest {
                 .isNeutered(true)
                 .build();
 
-        List<Dog> filterDogs = dogFilterService.getFilterDogs(parameters);
+        List<DogForDogListPage> filterDogs = dogFilterService.getFilterDogs(parameters);
         assertThat(filterDogs).hasSize(3);
         assertThat(filterDogs.get(0).isNeutered()).isEqualTo(true);
     }
@@ -52,7 +49,7 @@ public class DogFilterServiceTest {
                 .gender(Gender.MALE)
                 .build();
 
-        List<Dog> filterDogs = dogFilterService.getFilterDogs(parameters);
+        List<DogForDogListPage> filterDogs = dogFilterService.getFilterDogs(parameters);
         assertThat(filterDogs).hasSize(1);
         assertThat(filterDogs.get(0).getName()).isEqualTo("Bob");
     }
