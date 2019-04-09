@@ -47,7 +47,7 @@ public class DogController {
     }
 
     @GetMapping("/dogs/shelter/{id}")
-    private List<DogForDogListPage> getDogsByShelterId(@PathVariable Long id){
+    private List<DogForDogPage> getDogsByShelterId(@PathVariable Long id){
         return dogRepository.getDogsFilteredByShelterId(id);
     }
 }
