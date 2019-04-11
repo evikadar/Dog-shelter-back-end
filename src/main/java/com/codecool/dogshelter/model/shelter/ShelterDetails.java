@@ -26,7 +26,7 @@ public interface ShelterDetails {
 
         String getAddress();
 
-        int getZipCode();
+        Integer getZipCode();
 
     }
 
