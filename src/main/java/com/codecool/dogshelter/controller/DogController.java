@@ -13,8 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
@@ -32,7 +31,6 @@ public class DogController {
     @Autowired
     private ShelterRepository shelterRepository;
 
-    // TODO: Return only dogs with available status
     @RequestMapping("/dogs")
     @GetMapping("/dogs")
     private List<DogForDogListPage> getDogs() {
@@ -98,6 +96,15 @@ public class DogController {
             dogToAdd.setPhotoPath(fileName);
         }
         dogRepository.save(dogToAdd);
+    }
+
+    @GetMapping("/dogs/enums")
+    Map<String, Map<String, String>> getDogEnums() {
+        Map<String, Map<String, String>> dogEnumMap = new HashMap<>();
+        dogEnumMap.put("breeds", Breed.getMapOfBreeds());
+        dogEnumMap.put("sizes", DogSize.getMapOfDogSizes());
+        dogEnumMap.put("statuses", Status.getMapOfStatuses());
+        return dogEnumMap;
     }
 
 }
