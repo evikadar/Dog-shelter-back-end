@@ -1,11 +1,16 @@
 package com.codecool.dogshelter.service;
 
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
@@ -51,5 +56,22 @@ public class FileStorageService {
         Arrays.stream(fileNameSplit).forEach(sb::append);
         return sb.toString();
 
+    }
+
+    public Resource loadAsResource(String filename) throws IOException {
+        try {
+            Path filePath = Paths.get(fileStorageLocation, filename);
+            Resource resource = new UrlResource(filePath.toUri());
+            if (resource.exists() || resource.isReadable()) {
+                return resource;
+            }
+            else {
+                throw new FileNotFoundException(
+                        "Could not read file: " + filename);
+            }
+        }
+        catch (MalformedURLException e) {
+            throw new IOException("Could not read file: " + filename, e);
+        }
     }
 }
