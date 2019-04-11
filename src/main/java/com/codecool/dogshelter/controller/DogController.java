@@ -3,8 +3,6 @@ package com.codecool.dogshelter.controller;
 import com.codecool.dogshelter.model.dog.*;
 import com.codecool.dogshelter.model.shelter.Shelter;
 import com.codecool.dogshelter.model.SearchParameters;
-import com.codecool.dogshelter.model.dog.DogForDogListPage;
-import com.codecool.dogshelter.model.dog.DogForDogPage;
 import com.codecool.dogshelter.repository.DogRepository;
 import com.codecool.dogshelter.repository.ShelterRepository;
 import com.codecool.dogshelter.service.DogFilterService;
