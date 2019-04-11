@@ -1,9 +1,9 @@
 package com.codecool.dogshelter.controller;
 
-import com.codecool.dogshelter.model.dog.Dog;
-import com.codecool.dogshelter.model.dog.DogForDogListPage;
-import com.codecool.dogshelter.model.dog.DogForDogPage;
+import com.codecool.dogshelter.model.dog.*;
+import com.codecool.dogshelter.model.shelter.Shelter;
 import com.codecool.dogshelter.repository.DogRepository;
+import com.codecool.dogshelter.repository.ShelterRepository;
 import com.codecool.dogshelter.service.DogFilterService;
 import com.codecool.dogshelter.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,10 +29,13 @@ public class DogController {
     @Autowired
     private FileStorageService fileStorageService;
 
+    @Autowired
+    private ShelterRepository shelterRepository;
+
     // TODO: Return only dogs with available status
     @RequestMapping("/dogs")
     @GetMapping("/dogs")
-    private List<DogForDogListPage> getDogs(){
+    private List<DogForDogListPage> getDogs() {
         return dogRepository.getDogsForDogListPage();
     }
 
@@ -53,10 +57,47 @@ public class DogController {
 
     @PostMapping(value = "/shelter/dog")
     @ResponseStatus(HttpStatus.CREATED)
-    private void saveNewDog(@RequestParam("file") MultipartFile file, @RequestParam("shelterId") String shelterId, @RequestParam ("name") String name, @RequestParam("breed") String breed) {
-        String fileName = fileStorageService.storeFile(file);
-        //dogRepository.save(dog);
+    private void saveNewDog(
+            @RequestParam(name = "file", required = false) MultipartFile file,
+            @RequestParam("shelterId") String shelterIdString,
+            @RequestParam("name") String name,
+            @RequestParam("breed") Breed breed,
+            @RequestParam("dateOfBirth") String dateOfBirthString,
+            @RequestParam("size") DogSize size,
+            @RequestParam(name = "status", required = false, defaultValue = "AVAILABLE") Status status,
+            @RequestParam(name = "personalityTrait", required = false) String personalityTrait,
+            @RequestParam(name = "dreamHome", required = false) String dreamHome,
+            @RequestParam(name = "specialFeatures", required = false) String specialFeatures,
+            @RequestParam("gender") Gender gender,
+            @RequestParam("isNeutered") boolean isNeutered
+            ) {
 
+        Long shelterId = Long.valueOf(shelterIdString);
+        Shelter shelter = shelterRepository.getById(shelterId);
+        LocalDate dateOfBirth = LocalDate.parse(dateOfBirthString);
+        DogDescription dogDescription = DogDescription.builder()
+                .personalityTrait(personalityTrait)
+                .dreamHome(dreamHome)
+                .specialFeatures(specialFeatures)
+                .build();
+
+        Dog dogToAdd = Dog.builder()
+                .breed(breed)
+                .shelter(shelter)
+                .dateOfBirth(dateOfBirth)
+                .name(name)
+                .size(size)
+                .status(status)
+                .isNeutered(isNeutered)
+                .gender(gender)
+                .description(dogDescription)
+                .build();
+
+        if (file != null) {
+            String fileName = fileStorageService.storeFile(file);
+            dogToAdd.setPhotoPath(fileName);
+        }
+        dogRepository.save(dogToAdd);
     }
 
 }
