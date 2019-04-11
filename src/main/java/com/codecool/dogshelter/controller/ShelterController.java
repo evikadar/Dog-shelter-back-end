@@ -16,19 +16,25 @@ public class ShelterController {
 
     @PostMapping("shelter/{id}/edit")
     public void editShelter(@PathVariable ("id") Long id, @RequestBody Shelter shelter){
-        System.out.println(id);
-        String name = shelter.getName();
-        System.out.println(name);
-        String email = shelter.getEmail();
-        String phoneNumber = shelter.getPhoneNumber();
-        String country = shelter.getAddress().getCountry();
-        String city = shelter.getAddress().getCity();
-        String address = shelter.getAddress().getAddress();
-        Integer zip = shelter.getAddress().getZipCode();
-        String description = shelter.getShelterDescription();
+        Shelter shelterInDb = shelterRepository.getOne(id);
+        Address addressInDb = shelterInDb.getAddress();
+        Address newAddress = shelter.getAddress();
 
-        shelterRepository.updateShelterDetailsById(id, name, email, phoneNumber, description);
-        shelterRepository.updateAddressById(shelter.getAddress().getId(), country, city, address, zip);
+        shelterInDb.setName(shelter.getName());
+        shelterInDb.setEmail(shelter.getEmail());
+        shelterInDb.setPhoneNumber(shelter.getPhoneNumber());
+        shelterInDb.setShelterDescription(shelter.getShelterDescription());
 
+        if (addressInDb != null){
+            addressInDb.setCountry(newAddress.getCountry());
+            addressInDb.setCity(newAddress.getCity());
+            addressInDb.setAddress(newAddress.getAddress());
+            addressInDb.setZipCode(newAddress.getZipCode());
+
+        } else {
+            shelterInDb.setAddress(newAddress);
+        }
+
+        shelterRepository.save(shelterInDb);
     }
 }
