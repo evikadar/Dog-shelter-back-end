@@ -19,7 +19,7 @@ public class LoginController {
     private UserRepository userRepository;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String register(@RequestBody User userToLogin, RedirectAttributes redirectAttributes) {
+    public void register(@RequestBody User userToLogin, RedirectAttributes redirectAttributes) {
         String user = userToLogin.getUsername();
         String password = userToLogin.getPassword1();
         System.out.printf("Data I got: %s %s %n", user, password);
@@ -31,12 +31,8 @@ public class LoginController {
 
         if (user.equals(foundName) && (password.equals(foundPassword))) {
             System.out.printf("You are in!!!!! :)%n");
-            return "redirect:/dogs";
         } else {
             System.out.printf("You are out :(%n");
-            redirectAttributes.addAttribute("user", user);
-            redirectAttributes.addFlashAttribute("loggedIn", true);
-            return "redirect:/register";
         }
 
     }
