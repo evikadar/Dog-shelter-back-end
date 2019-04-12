@@ -21,4 +21,7 @@ public interface DogRepository extends JpaRepository<Dog, Long> {
     @Query("select d from Dog d where d.status = 'AVAILABLE'")
     List<DogForDogListPage> getDogsForDogListPage();
 
+    @Query("SELECT d FROM Dog d WHERE d.shelter.id = :shelter_id AND d.status = 'AVAILABLE'")
+    List<DogForDogPage> getDogsFilteredByShelterId(@Param("shelter_id") Long id);
+
 }
