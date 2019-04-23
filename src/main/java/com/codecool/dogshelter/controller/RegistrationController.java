@@ -32,7 +32,6 @@ public class RegistrationController {
                 .userRole(userRole)
                 .build();
         userRepository.save(newRegistration);
-        System.out.printf("Registered: %s %s %s %s %n", username, email, pw1, userRole);
 
     }
 

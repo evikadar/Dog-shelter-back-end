@@ -1,6 +1,8 @@
 package com.codecool.dogshelter.controller;
 
+import com.codecool.dogshelter.model.PublicUserData;
 import com.codecool.dogshelter.model.User;
+import com.codecool.dogshelter.model.UserRole;
 import com.codecool.dogshelter.model.dog.Dog;
 import com.codecool.dogshelter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ public class LoginController {
     private UserRepository userRepository;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public boolean register(@RequestBody User userToLogin) {
+    public PublicUserData register(@RequestBody User userToLogin) {
         String user = userToLogin.getUsername();
         String password = userToLogin.getPassword1();
 
@@ -29,14 +31,17 @@ public class LoginController {
             String foundPassword = triesToLogin.getPassword1();
             if (user.equals(foundName) && (password.equals(foundPassword))) {
                 System.out.printf("You are in!!!!! :)%n");
-                return true;
+                UserRole userRole = triesToLogin.getUserRole();
+                PublicUserData toReturn = PublicUserData.builder()
+                        .username(foundName).loggedIn(true).userRole(userRole).build();
+                return toReturn;
             } else {
                 System.out.printf("You are out :(%n");
-                return false;
+                return null;
             }
         } else {
             System.out.printf("No user by this name.%n");
-            return false;
+            return null;
         }
     }
 
