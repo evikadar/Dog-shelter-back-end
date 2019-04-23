@@ -25,8 +25,5 @@ public class User {
     // TODO: there should be only one password and it should be validated by react on the frontend!
     // TODO: hash everything
     private String password1;
-    private String password2;
-
-
 
 }

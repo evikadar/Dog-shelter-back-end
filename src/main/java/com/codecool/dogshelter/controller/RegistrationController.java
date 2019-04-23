@@ -19,7 +19,6 @@ public class RegistrationController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void register(@RequestBody User newUser) {
         // TODO: PUT THIS INTO FUNCTION UNDER USER
-        // TODO: HASH THEM BEFORE SAVE
         String username = newUser.getUsername();
         String email = newUser.getEmail();
         String pw1 = passwordEncoder.encode(newUser.getPassword1());
