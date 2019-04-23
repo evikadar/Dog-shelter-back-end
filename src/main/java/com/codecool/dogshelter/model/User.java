@@ -22,7 +22,7 @@ public class User {
 
     private String username;
     private String email;
-    private String password1;
+    private String password;
     private String selectedO;
     private UserRole userRole;
 }
