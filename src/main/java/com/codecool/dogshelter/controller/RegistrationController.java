@@ -22,13 +22,13 @@ public class RegistrationController {
         // TODO: PUT THIS INTO FUNCTION UNDER USER
         String username = newUser.getUsername();
         String email = newUser.getEmail();
-        String pw1 = passwordEncoder.encode(newUser.getPassword());
+        String pw1 = passwordEncoder.encode(newUser.getPassword1());
         String regAs = newUser.getSelectedO();
         UserRole userRole = regAs.equals("asOwner")? UserRole.POTENTIAL_PET_OWNER : UserRole.SHELTER;
         User newRegistration = User.builder()
                 .username(username)
                 .email(email)
-                .password(pw1)
+                .password1(pw1)
                 .userRole(userRole)
                 .build();
         userRepository.save(newRegistration);

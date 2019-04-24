@@ -21,12 +21,13 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public PublicUserData register(@RequestBody User incomingUser) {
         String user = incomingUser.getUsername();
-        String password = passwordEncoder.encode(incomingUser.getPassword());
+        String password = passwordEncoder.encode(incomingUser.getPassword1());
+        System.out.printf("%s %s is what i got from the requestbody", user, password);
 
         User databaseUser = userRepository.findByUsername(user);
         if (databaseUser != null) {
             String foundName = databaseUser.getUsername();
-            String foundPassword = databaseUser.getPassword();
+            String foundPassword = databaseUser.getPassword1();
             if (user.equals(foundName) && (password.equals(foundPassword))) {
                 System.out.printf("You are in!!!!! :)%n");
                 UserRole userRole = databaseUser.getUserRole();
