@@ -1,6 +1,8 @@
 package com.codecool.dogshelter.controller;
 
+import com.codecool.dogshelter.model.PublicUserData;
 import com.codecool.dogshelter.model.User;
+import com.codecool.dogshelter.model.UserRole;
 import com.codecool.dogshelter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +19,7 @@ public class LoginController {
     private UserRepository userRepository;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public boolean register(@RequestBody User incomingUser) {
+    public PublicUserData register(@RequestBody User incomingUser) {
         String user = incomingUser.getUsername();
         String password = incomingUser.getPassword1();
 
@@ -27,14 +29,16 @@ public class LoginController {
             String foundPassword = databaseUser.getPassword1();
             if (user.equals(foundName) && (passwordEncoder.matches(password, foundPassword))) {
                 System.out.printf("You are in!!!!! :)%n");
-                return true;
+                UserRole userRole = databaseUser.getUserRole();
+                return PublicUserData.builder()
+                        .username(foundName).loggedIn(true).userRole(userRole).build();
             } else {
                 System.out.printf("You are out :(%n");
-                return false;
+                return null;
             }
         } else {
             System.out.printf("No user by this name.%n");
-            return false;
+            return null;
         }
     }
 
@@ -42,7 +46,6 @@ public class LoginController {
     private User getUserProfilePage(@PathVariable String name) {
         return userRepository.findByUsername(name);
     }
-
 
 
 
