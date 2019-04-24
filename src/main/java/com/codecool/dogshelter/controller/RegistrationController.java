@@ -45,7 +45,6 @@ public class RegistrationController {
                 .build();
 
         userRepository.save(newRegistration);
-        System.out.printf("%s%n", newRegistration.toString());
     }
 
 

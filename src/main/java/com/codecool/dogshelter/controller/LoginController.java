@@ -40,7 +40,6 @@ public class LoginController {
                         .userRole(userRole)
                         .shelterId(shelterId)
                         .build();
-                System.out.printf("%s%n", toSend.toString());
                 return toSend;
             } else {
                 System.out.printf("You are out :(%n");
@@ -56,7 +55,5 @@ public class LoginController {
     private User getUserProfilePage(@PathVariable String name) {
         return userRepository.findByUsername(name);
     }
-
-
 
 }
