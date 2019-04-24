@@ -1,10 +1,9 @@
 package com.codecool.dogshelter.model;
 
+import com.codecool.dogshelter.model.shelter.Shelter;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -23,4 +22,7 @@ public class User {
     private String password1;
     private String selectedO;
     private UserRole userRole;
+
+    @OneToOne(mappedBy = "user")
+    private Shelter shelter;
 }
