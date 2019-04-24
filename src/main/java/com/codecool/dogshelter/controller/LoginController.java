@@ -19,13 +19,13 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public boolean register(@RequestBody User incomingUser) {
         String user = incomingUser.getUsername();
-        String password = passwordEncoder.encode(incomingUser.getPassword());
+        String password = incomingUser.getPassword1();
 
         User databaseUser = userRepository.findByUsername(user);
         if (databaseUser != null) {
             String foundName = databaseUser.getUsername();
-            String foundPassword = databaseUser.getPassword();
-            if (user.equals(foundName) && (password.equals(foundPassword))) {
+            String foundPassword = databaseUser.getPassword1();
+            if (user.equals(foundName) && (passwordEncoder.matches(password, foundPassword))) {
                 System.out.printf("You are in!!!!! :)%n");
                 return true;
             } else {
