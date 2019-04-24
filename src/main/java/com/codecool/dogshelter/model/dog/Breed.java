@@ -1,24 +1,23 @@
 package com.codecool.dogshelter.model.dog;
 
 
-import java.util.Arrays;
-import java.util.Optional;
+import java.util.*;
 
 public enum Breed {
-    COLLIE("collie"),
-    HUSKY("husky"),
-    LABRADOR("labrador"),
-    RETRIEVER("retriever"),
-    MIXED("mixed"),
-    HOUND("hound"),
-    PUG("pug"),
-    CHIHUAHUA("chihuahua"),
-    BEAGLE("beagle"),
-    JACK_RUSSEL("jack russel terrier"),
-    GERMAN_SHEPHERD("german shepherd"),
-    BORDER_COLLIE("border collie"),
-    REDBONE("redbone coonhound"),
-    TERRIER("terrier");
+    BEAGLE("Beagle"),
+    BORDER_COLLIE("Border collie"),
+    CHIHUAHUA("Chihuahua"),
+    COLLIE("Collie"),
+    GERMAN_SHEPHERD("German shepherd"),
+    HOUND("Hound"),
+    HUSKY("Husky"),
+    JACK_RUSSEL("Jack russel terrier"),
+    LABRADOR("Labrador"),
+    MIXED("Mixed"),
+    PUG("Pug"),
+    REDBONE("Redbone coonhound"),
+    RETRIEVER("Retriever"),
+    TERRIER("Terrier");
 
     private final String breedName;
 
@@ -28,6 +27,12 @@ public enum Breed {
 
     public String getStringValue() {
         return breedName;
+    }
+
+    public static Map<String, String> getMapOfBreeds() {
+        Map<String, String> breedMap = new LinkedHashMap<>();
+        Arrays.stream(Breed.values()).forEach(breed -> breedMap.put(breed.toString(), breed.getStringValue()));
+        return breedMap;
     }
 
     public static Breed getFromStringIfValid(String breed) {

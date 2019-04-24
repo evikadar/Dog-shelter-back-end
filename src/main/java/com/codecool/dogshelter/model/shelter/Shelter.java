@@ -31,7 +31,7 @@ public class Shelter {
     @JsonIgnoreProperties({"shelter"})
     private Address address;
 
-    @OneToMany(mappedBy = "shelter", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "shelter", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     @Singular
     @EqualsAndHashCode.Exclude
     @JsonIgnoreProperties({"shelter"})

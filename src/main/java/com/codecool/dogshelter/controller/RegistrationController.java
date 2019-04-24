@@ -16,7 +16,7 @@ public class RegistrationController {
 
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@RequestBody User newUser) {
+    public void register(@RequestBody User newUser) {
         // TODO: PUT THIS INTO FUNCTION UNDER USER
         // TODO: HASH THEM BEFORE SAVE
         String username = newUser.getUsername();
@@ -25,8 +25,6 @@ public class RegistrationController {
         User newRegistration = User.builder().username(username).email(email).password1(pw1).build();
         userRepository.save(newRegistration);
         System.out.printf("Registered: %s %s %s %n", username, email, pw1);
-        return "redirect:/login";
-
 
     }
 

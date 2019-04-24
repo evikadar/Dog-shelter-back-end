@@ -19,23 +19,32 @@ public class LoginController {
     private UserRepository userRepository;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public void register(@RequestBody User userToLogin, RedirectAttributes redirectAttributes) {
+    public boolean register(@RequestBody User userToLogin) {
         String user = userToLogin.getUsername();
         String password = userToLogin.getPassword1();
-        System.out.printf("Data I got: %s %s %n", user, password);
 
         User triesToLogin = userRepository.findByUsername(user);
-        String foundName = triesToLogin.getUsername();
-        String foundPassword = triesToLogin.getPassword1();
-        System.out.printf("In the db I have %s and pw %s%n", foundName, foundPassword);
-
-        if (user.equals(foundName) && (password.equals(foundPassword))) {
-            System.out.printf("You are in!!!!! :)%n");
+        if (triesToLogin != null) {
+            String foundName = triesToLogin.getUsername();
+            String foundPassword = triesToLogin.getPassword1();
+            if (user.equals(foundName) && (password.equals(foundPassword))) {
+                System.out.printf("You are in!!!!! :)%n");
+                return true;
+            } else {
+                System.out.printf("You are out :(%n");
+                return false;
+            }
         } else {
-            System.out.printf("You are out :(%n");
+            System.out.printf("No user by this name.%n");
+            return false;
         }
-
     }
+
+    @GetMapping(value = "/profile/{name}")
+    private User getUserProfilePage(@PathVariable String name) {
+        return userRepository.findByUsername(name);
+    }
+
 
 
 
