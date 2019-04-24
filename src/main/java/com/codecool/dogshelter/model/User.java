@@ -1,9 +1,6 @@
 package com.codecool.dogshelter.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +11,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 public class User {
 
     @GeneratedValue
@@ -22,7 +20,7 @@ public class User {
 
     private String username;
     private String email;
-    private String password;
+    private String password1;
     private String selectedO;
     private UserRole userRole;
 }
