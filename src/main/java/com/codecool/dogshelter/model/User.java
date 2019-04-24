@@ -1,17 +1,15 @@
 package com.codecool.dogshelter.model;
 
+import com.codecool.dogshelter.model.shelter.Shelter;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
 public class User {
 
     @GeneratedValue
@@ -23,4 +21,7 @@ public class User {
     private String password1;
     private String selectedO;
     private UserRole userRole;
+
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    private Shelter shelter;
 }

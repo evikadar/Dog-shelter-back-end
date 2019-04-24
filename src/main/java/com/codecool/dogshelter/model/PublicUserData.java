@@ -10,6 +10,7 @@ public class PublicUserData {
     private String username;
     private boolean loggedIn;
     private UserRole userRole;
+    private String shelterId;
 
 
 }

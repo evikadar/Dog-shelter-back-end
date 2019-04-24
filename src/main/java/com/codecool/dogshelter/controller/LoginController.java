@@ -22,16 +22,25 @@ public class LoginController {
     public PublicUserData register(@RequestBody User incomingUser) {
         String user = incomingUser.getUsername();
         String password = incomingUser.getPassword1();
+        String shelterId = "";
 
         User databaseUser = userRepository.findByUsername(user);
         if (databaseUser != null) {
+            if (databaseUser.getShelter() != null) {
+                shelterId = databaseUser.getShelter().getId().toString();
+            }
             String foundName = databaseUser.getUsername();
             String foundPassword = databaseUser.getPassword1();
             if (user.equals(foundName) && (passwordEncoder.matches(password, foundPassword))) {
                 System.out.printf("You are in!!!!! :)%n");
                 UserRole userRole = databaseUser.getUserRole();
-                return PublicUserData.builder()
-                        .username(foundName).loggedIn(true).userRole(userRole).build();
+                PublicUserData toSend = PublicUserData.builder()
+                        .username(foundName)
+                        .loggedIn(true)
+                        .userRole(userRole)
+                        .shelterId(shelterId)
+                        .build();
+                return toSend;
             } else {
                 System.out.printf("You are out :(%n");
                 return null;
@@ -46,7 +55,5 @@ public class LoginController {
     private User getUserProfilePage(@PathVariable String name) {
         return userRepository.findByUsername(name);
     }
-
-
 
 }
