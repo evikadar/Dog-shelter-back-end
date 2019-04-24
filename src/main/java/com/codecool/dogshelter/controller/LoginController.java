@@ -32,9 +32,8 @@ public class LoginController {
             if (user.equals(foundName) && (password.equals(foundPassword))) {
                 System.out.printf("You are in!!!!! :)%n");
                 UserRole userRole = triesToLogin.getUserRole();
-                PublicUserData toReturn = PublicUserData.builder()
+                return PublicUserData.builder()
                         .username(foundName).loggedIn(true).userRole(userRole).build();
-                return toReturn;
             } else {
                 System.out.printf("You are out :(%n");
                 return null;
@@ -49,7 +48,6 @@ public class LoginController {
     private User getUserProfilePage(@PathVariable String name) {
         return userRepository.findByUsername(name);
     }
-
 
 
 
