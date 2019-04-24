@@ -10,7 +10,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
 public class User {
 
     @GeneratedValue
@@ -23,6 +22,6 @@ public class User {
     private String selectedO;
     private UserRole userRole;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private Shelter shelter;
 }

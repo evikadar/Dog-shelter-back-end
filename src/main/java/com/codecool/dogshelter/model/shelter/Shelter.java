@@ -38,6 +38,6 @@ public class Shelter {
     @JsonIgnoreProperties({"shelter"})
     private List<Dog> dogs;
 
-    @OneToOne(cascade = {CascadeType.PERSIST})
+    @OneToOne(mappedBy = "shelter")
     private User user;
 }

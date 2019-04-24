@@ -44,10 +44,8 @@ public class RegistrationController {
                 .shelter(possibleShelter)
                 .build();
 
-        if (possibleShelter != null) {
-            shelterRepository.save(possibleShelter);
-        }
         userRepository.save(newRegistration);
+        System.out.printf("%s%n", newRegistration.toString());
     }
 
 
