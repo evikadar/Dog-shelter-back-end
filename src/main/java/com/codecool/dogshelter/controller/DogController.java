@@ -123,4 +123,26 @@ public class DogController {
         return dog;
     }
 
+    @PutMapping("shelter/{shelterId}/dog/{id}")
+    void updateDogInfo(
+            @PathVariable Long shelterId,
+            @PathVariable Long id,
+            @RequestParam(name = "file", required = false) MultipartFile file,
+            @RequestParam("name") String name,
+            @RequestParam("breed") Breed breed,
+            @RequestParam("dateOfBirth") LocalDate dateOfBirthString,
+            @RequestParam("size") DogSize size,
+            @RequestParam(name = "status", required = false, defaultValue = "AVAILABLE") Status status,
+            @RequestParam(name = "personalityTrait", required = false) String personalityTrait,
+            @RequestParam(name = "dreamHome", required = false) String dreamHome,
+            @RequestParam(name = "specialFeatures", required = false) String specialFeatures,
+            @RequestParam("gender") Gender gender,
+            @RequestParam("isNeutered") boolean isNeutered,
+            @RequestParam(name = "ownerName", required = false) String ownerName,
+            @RequestParam(name = "ownerPhoneNumber", required = false) String ownerPhoneNumber,
+            @RequestParam(name = "ownerEmail", required = false) String ownerEmail
+            ) {
+
+    }
+
 }
