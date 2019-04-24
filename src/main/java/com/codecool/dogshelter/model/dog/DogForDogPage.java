@@ -15,15 +15,18 @@ public interface DogForDogPage {
 
     String getPhotoPath();
 
-    Breed getBreed();
+    @Value("#{target.getBreedAsString()}")
+    String getBreed();
 
-    Gender getGender();
+    @Value("#{target.getGenderAsString()}")
+    String getGender();
 
     ShelterMinimalInfo getShelter();
 
     boolean isNeutered();
 
-    DogSize getSize();
+    @Value("#{target.getSizeAsString()}")
+    String getSize();
 
     LocalDate getDateOfBirth();
 

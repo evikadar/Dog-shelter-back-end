@@ -55,6 +55,22 @@ public class Dog {
     private Owner owner;
 
 
+    public String getBreedAsString() {
+        return breed.getStringValue();
+    }
+
+    public String getGenderAsString() {
+        return gender.getStringValue();
+    }
+
+    public String getSizeAsString() {
+        return size.getStringValue();
+    }
+
+    public String getStatusAsString() {
+        return status.getStringValue();
+    }
+
     public Long getAge() {
 
         if (dateOfBirth != null) {

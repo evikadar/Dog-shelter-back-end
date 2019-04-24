@@ -1,5 +1,7 @@
 package com.codecool.dogshelter.model.dog;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import java.time.LocalDate;
 
 public interface DogForShelterDogPage {
@@ -10,13 +12,17 @@ public interface DogForShelterDogPage {
 
     String getPhotoPath();
 
-    Breed getBreed();
+    @Value("#{target.getBreedAsString()}")
+    String getBreed();
 
-    Gender getGender();
+    @Value("#{target.getGenderAsString()}")
+    String getGender();
 
-    Status getStatus();
+    @Value("#{target.getStatusAsString()}")
+    String getStatus();
 
-    DogSize getSize();
+    @Value("#{target.getSizeAsString()}")
+    String getSize();
 
     boolean isNeutered();
 
@@ -25,4 +31,7 @@ public interface DogForShelterDogPage {
     LocalDate getDateOfBirth();
 
     OwnerInfo getOwner();
+
+    @Value("#{target.getAge()}")
+    Long getAge();
 }
