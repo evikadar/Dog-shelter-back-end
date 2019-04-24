@@ -3,6 +3,7 @@ package com.codecool.dogshelter.controller;
 import com.codecool.dogshelter.model.shelter.Address;
 import com.codecool.dogshelter.model.shelter.Shelter;
 import com.codecool.dogshelter.repository.ShelterRepository;
+import com.codecool.dogshelter.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,9 @@ public class ShelterController {
     @Autowired
     private ShelterRepository shelterRepository;
 
+    @Autowired
+    private FileStorageService fileStorageService;
+
     @PostMapping("shelter/{id}/edit")
     @ResponseStatus(HttpStatus.CREATED)
     public void editShelter(
@@ -27,7 +31,7 @@ public class ShelterController {
             @RequestParam(name = "shelterAddressCountry", required = false) String country,
             @RequestParam(name = "shelterAddressCity", required = false) String city,
             @RequestParam(name = "shelterAddressAddress", required = false) String address,
-            @RequestParam(name = "shelterAddressZip", required = false) int zip,
+            @RequestParam(name = "shelterAddressZip", required = false) Integer zip,
             @RequestParam(name = "description", required = false) String description
             ){
         Shelter shelterInDb = shelterRepository.getOne(id);
@@ -48,6 +52,11 @@ public class ShelterController {
         } else {
             Address newAddress = Address.builder().country(country).city(city).address(address).zipCode(zip).build();
             shelterInDb.setAddress(newAddress);
+        }
+
+        if (file != null){
+            String fileName = fileStorageService.storeFile(file);
+            shelterInDb.setPhotoPath(fileName);
         }
 
         shelterRepository.save(shelterInDb);
