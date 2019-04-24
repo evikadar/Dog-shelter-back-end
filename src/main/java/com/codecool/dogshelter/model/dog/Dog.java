@@ -50,6 +50,11 @@ public class Dog {
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @JsonIgnoreProperties({"dog"})
+    private Owner owner;
+
+
     public Long getAge() {
 
         if (dateOfBirth != null) {
