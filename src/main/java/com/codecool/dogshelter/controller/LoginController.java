@@ -3,35 +3,33 @@ package com.codecool.dogshelter.controller;
 import com.codecool.dogshelter.model.PublicUserData;
 import com.codecool.dogshelter.model.User;
 import com.codecool.dogshelter.model.UserRole;
-import com.codecool.dogshelter.model.dog.Dog;
 import com.codecool.dogshelter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.mvc.Controller;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 public class LoginController {
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private UserRepository userRepository;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public PublicUserData register(@RequestBody User userToLogin) {
-        String user = userToLogin.getUsername();
-        String password = userToLogin.getPassword1();
+    public PublicUserData register(@RequestBody User incomingUser) {
+        String user = incomingUser.getUsername();
+        String password = passwordEncoder.encode(incomingUser.getPassword());
 
-        User triesToLogin = userRepository.findByUsername(user);
-        if (triesToLogin != null) {
-            String foundName = triesToLogin.getUsername();
-            String foundPassword = triesToLogin.getPassword1();
+        User databaseUser = userRepository.findByUsername(user);
+        if (databaseUser != null) {
+            String foundName = databaseUser.getUsername();
+            String foundPassword = databaseUser.getPassword();
             if (user.equals(foundName) && (password.equals(foundPassword))) {
                 System.out.printf("You are in!!!!! :)%n");
-                UserRole userRole = triesToLogin.getUserRole();
+                UserRole userRole = databaseUser.getUserRole();
                 return PublicUserData.builder()
                         .username(foundName).loggedIn(true).userRole(userRole).build();
             } else {

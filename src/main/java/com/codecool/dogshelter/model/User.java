@@ -22,12 +22,7 @@ public class User {
 
     private String username;
     private String email;
-    // TODO: hash everything
-    private String password1;
-    private String password2;
+    private String password;
     private String selectedO;
     private UserRole userRole;
-
-
-
 }
