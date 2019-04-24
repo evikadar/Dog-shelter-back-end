@@ -113,4 +113,14 @@ public class DogController {
         return dogEnumMap;
     }
 
+    @GetMapping("/shelter/{shelterId}/dog/{id}")
+    DogForShelterDogPage getDogForShelterDogDetailPage(@PathVariable Long shelterId, @PathVariable Long id) {
+        DogForShelterDogPage dog = dogRepository.getDogDetailsForShelterById(shelterId, id);
+        if (dog == null) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "No available dog by this ID.");
+        }
+        return dog;
+    }
+
 }
