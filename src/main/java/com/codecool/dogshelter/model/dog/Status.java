@@ -1,19 +1,28 @@
 package com.codecool.dogshelter.model.dog;
 
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public enum Status {
-    AVAILABLE,
-    ADOPTED,
-    PENDING,
-    INVALID;
+    AVAILABLE("Looking for owner"),
+    PENDING("Adoption pending"),
+    ADOPTED("Adopted"),
+    DEAD("Passed away");
 
-    public static Status fromString(String size){
-        switch (size){
-            case "AVAILABLE": return AVAILABLE;
-            case "ADOPTED": return ADOPTED;
-            case "PENDING": return PENDING;
+    private final String statusName;
 
-            default:
-                return INVALID;
-        }
+    Status(String statusName) {
+        this.statusName = statusName;
+    }
+
+    public String getStringValue() {
+        return statusName;
+    }
+
+    public static Map<String, String> getMapOfStatuses() {
+        Map<String, String> statusMap = new LinkedHashMap<>();
+        Arrays.stream(Status.values()).forEach(status -> statusMap.put(status.toString(), status.getStringValue()));
+        return statusMap;
     }
 }

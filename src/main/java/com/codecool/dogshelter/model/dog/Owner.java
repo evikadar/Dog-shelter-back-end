@@ -7,22 +7,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Builder
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-public class DogDescription {
+public class Owner {
 
     @GeneratedValue
     @Id
     private Long id;
 
-    private String personalityTrait;
-    private String dreamHome;
-    private String specialFeatures;
+    private String email;
 
-    @OneToOne(mappedBy = "description")
+    private String name;
+
+    private String phoneNumber;
+
+    @OneToOne(mappedBy = "owner")
     @EqualsAndHashCode.Exclude
     private Dog dog;
 }

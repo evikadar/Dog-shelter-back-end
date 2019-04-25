@@ -1,112 +1,81 @@
 package com.codecool.dogshelter.model.dog;
 
-import com.codecool.dogshelter.model.Shelter;
+import com.codecool.dogshelter.model.shelter.Shelter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
+@Entity
 public class Dog {
 
-    private static int nextId;
+    @GeneratedValue
+    @Id
+    private Long id;
 
-    private int id;
     private String name;
-    private int age;
+
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @JsonIgnoreProperties({"dog"})
     private DogDescription description;
-    private Status status;
-    private Shelter shelter;
+
     private String photoPath;
-    private boolean isBoy;
     private boolean isNeutered;
+
+    @ManyToOne
+    @JsonIgnoreProperties({"dogs"})
+    private Shelter shelter;
+
+    @Enumerated(EnumType.STRING)
     private Breed breed;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    @Enumerated(EnumType.STRING)
     private DogSize size;
 
-    public Dog() {
-        id = nextId++;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @Column(nullable = false)
+    private LocalDate dateOfBirth;
+
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @JsonIgnoreProperties({"dog"})
+    private Owner owner;
+
+
+    public String getBreedAsString() {
+        return breed.getStringValue();
     }
 
-    public int getId() {
-        return id;
+    public String getGenderAsString() {
+        return gender.getStringValue();
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getSizeAsString() {
+        return size.getStringValue();
     }
 
-    public String getName() {
-        return name;
+    public String getStatusAsString() {
+        return status.getStringValue();
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public Long getAge() {
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public DogDescription getDescription() {
-        return description;
-    }
-
-    public void setDescription(DogDescription description) {
-        this.description = description;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public Shelter getShelter() {
-        return shelter;
-    }
-
-    public void setShelter(Shelter shelter) {
-        this.shelter = shelter;
-    }
-
-    public String getPhotoPath() {
-        return photoPath;
-    }
-
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
-    }
-
-    public boolean isBoy() {
-        return isBoy;
-    }
-
-    public void setBoy(boolean boy) {
-        isBoy = boy;
-    }
-
-    public boolean isNeutered() {
-        return isNeutered;
-    }
-
-    public void setNeutered(boolean neutered) {
-        isNeutered = neutered;
-    }
-
-    public Breed getBreed() {
-        return breed;
-    }
-
-    public void setBreed(Breed breed) {
-        this.breed = breed;
-    }
-
-    public DogSize getSize() {
-        return size;
-    }
-
-    public void setSize(DogSize size) {
-        this.size = size;
+        if (dateOfBirth != null) {
+            return ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
+        }
+        return null;
     }
 }
