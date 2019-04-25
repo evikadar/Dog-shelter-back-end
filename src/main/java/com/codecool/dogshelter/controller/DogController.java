@@ -72,6 +72,9 @@ public class DogController {
             @RequestParam(name = "personalityTrait", required = false) String personalityTrait,
             @RequestParam(name = "dreamHome", required = false) String dreamHome,
             @RequestParam(name = "specialFeatures", required = false) String specialFeatures,
+            @RequestParam(name = "ownerName", required = false) String ownerName,
+            @RequestParam(name = "ownerEmail", required = false) String ownerEmail,
+            @RequestParam(name = "ownerPhoneNumber", required = false) String ownerPhoneNumber,
             @RequestParam("gender") Gender gender,
             @RequestParam("isNeutered") boolean isNeutered
             ) {
@@ -85,6 +88,12 @@ public class DogController {
                 .specialFeatures(specialFeatures)
                 .build();
 
+        Owner owner = Owner.builder()
+                .name(ownerName)
+                .email(ownerEmail)
+                .phoneNumber(ownerPhoneNumber)
+                .build();
+
         Dog dogToAdd = Dog.builder()
                 .breed(breed)
                 .shelter(shelter)
@@ -95,6 +104,7 @@ public class DogController {
                 .isNeutered(isNeutered)
                 .gender(gender)
                 .description(dogDescription)
+                .owner(owner)
                 .build();
 
         if (file != null) {
