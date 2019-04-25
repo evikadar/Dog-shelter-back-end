@@ -1,6 +1,8 @@
 package com.codecool.dogshelter.controller;
 
+import com.codecool.dogshelter.model.PublicUserData;
 import com.codecool.dogshelter.model.User;
+import com.codecool.dogshelter.model.UserRole;
 import com.codecool.dogshelter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,24 +19,35 @@ public class LoginController {
     private UserRepository userRepository;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public boolean register(@RequestBody User incomingUser) {
+    public PublicUserData register(@RequestBody User incomingUser) {
         String user = incomingUser.getUsername();
-        String password = passwordEncoder.encode(incomingUser.getPassword());
+        String password = incomingUser.getPassword1();
+        String shelterId = "";
 
         User databaseUser = userRepository.findByUsername(user);
         if (databaseUser != null) {
+            if (databaseUser.getShelter() != null) {
+                shelterId = databaseUser.getShelter().getId().toString();
+            }
             String foundName = databaseUser.getUsername();
-            String foundPassword = databaseUser.getPassword();
-            if (user.equals(foundName) && (password.equals(foundPassword))) {
+            String foundPassword = databaseUser.getPassword1();
+            if (user.equals(foundName) && (passwordEncoder.matches(password, foundPassword))) {
                 System.out.printf("You are in!!!!! :)%n");
-                return true;
+                UserRole userRole = databaseUser.getUserRole();
+                PublicUserData toSend = PublicUserData.builder()
+                        .username(foundName)
+                        .loggedIn(true)
+                        .userRole(userRole)
+                        .shelterId(shelterId)
+                        .build();
+                return toSend;
             } else {
                 System.out.printf("You are out :(%n");
-                return false;
+                return null;
             }
         } else {
             System.out.printf("No user by this name.%n");
-            return false;
+            return null;
         }
     }
 
@@ -42,8 +55,5 @@ public class LoginController {
     private User getUserProfilePage(@PathVariable String name) {
         return userRepository.findByUsername(name);
     }
-
-
-
 
 }
