@@ -26,6 +26,8 @@ public class Shelter {
     private String email;
     private String phoneNumber;
     private String photoPath;
+
+    @Column(columnDefinition="CLOB(max)")
     private String shelterDescription;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})

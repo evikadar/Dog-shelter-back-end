@@ -2,10 +2,7 @@ package com.codecool.dogshelter.model.dog;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Data
 @Builder
@@ -18,8 +15,11 @@ public class DogDescription {
     @Id
     private Long id;
 
+    @Column(columnDefinition="CLOB(max)")
     private String personalityTrait;
+    @Column(columnDefinition="CLOB(max)")
     private String dreamHome;
+    @Column(columnDefinition="CLOB(max)")
     private String specialFeatures;
 
     @OneToOne(mappedBy = "description")
