@@ -12,17 +12,21 @@ public interface DogForShelterDogPage {
 
     String getPhotoPath();
 
-    @Value("#{target.getBreedAsString()}")
-    String getBreed();
+    Breed getBreed();
 
-    @Value("#{target.getGenderAsString()}")
-    String getGender();
+    String getBreedAsString();
 
-    @Value("#{target.getStatusAsString()}")
-    String getStatus();
+    String getGenderAsString();
 
-    @Value("#{target.getSizeAsString()}")
-    String getSize();
+    Gender getGender();
+
+    String getStatusAsString();
+
+    Status getStatus();
+
+    String getSizeAsString();
+
+    DogSize getSize();
 
     boolean isNeutered();
 

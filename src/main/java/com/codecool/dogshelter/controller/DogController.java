@@ -128,19 +128,20 @@ public class DogController {
         DogForShelterDogPage dog = dogRepository.getDogDetailsForShelterById(shelterId, id);
         if (dog == null) {
             throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "No available dog by this ID.");
+                    HttpStatus.NOT_FOUND, "No available dog by this ID.");
         }
         return dog;
     }
 
-    @PutMapping("shelter/{shelterId}/dog/{id}")
-    void updateDogInfo(
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/shelter/{shelterId}/dog/{id}")
+    private void updateDogInfo(
             @PathVariable Long shelterId,
             @PathVariable Long id,
             @RequestParam(name = "file", required = false) MultipartFile file,
             @RequestParam("name") String name,
             @RequestParam("breed") Breed breed,
-            @RequestParam("dateOfBirth") LocalDate dateOfBirthString,
+            @RequestParam("dateOfBirth") String dateOfBirthString,
             @RequestParam("size") DogSize size,
             @RequestParam(name = "status", required = false, defaultValue = "AVAILABLE") Status status,
             @RequestParam(name = "personalityTrait", required = false) String personalityTrait,
@@ -152,6 +153,57 @@ public class DogController {
             @RequestParam(name = "ownerPhoneNumber", required = false) String ownerPhoneNumber,
             @RequestParam(name = "ownerEmail", required = false) String ownerEmail
             ) {
+
+        LocalDate dateOfBirth = LocalDate.parse(dateOfBirthString);
+        Dog dogToUpdate = dogRepository.getOne(id);
+
+        if (!dogToUpdate.getShelter().getId().equals(shelterId)) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "No available dog by this ID.");
+        }
+
+        if (dogToUpdate.getDescription() == null) {
+            DogDescription dogDescription = DogDescription.builder()
+                    .personalityTrait(personalityTrait)
+                    .dreamHome(dreamHome)
+                    .specialFeatures(specialFeatures)
+                    .build();
+            dogToUpdate.setDescription(dogDescription);
+        } else {
+            DogDescription descriptionToUpdate = dogToUpdate.getDescription();
+            descriptionToUpdate.setDreamHome(dreamHome);
+            descriptionToUpdate.setPersonalityTrait(personalityTrait);
+            descriptionToUpdate.setSpecialFeatures(specialFeatures);
+        }
+
+        if (dogToUpdate.getOwner() == null) {
+            Owner owner = Owner.builder()
+                    .name(ownerName)
+                    .email(ownerEmail)
+                    .phoneNumber(ownerPhoneNumber)
+                    .build();
+            dogToUpdate.setOwner(owner);
+        } else {
+            Owner ownerToUpdate = dogToUpdate.getOwner();
+            ownerToUpdate.setName(ownerName);
+            ownerToUpdate.setEmail(ownerEmail);
+            ownerToUpdate.setPhoneNumber(ownerPhoneNumber);
+        }
+
+        if (file != null) {
+            String fileName = fileStorageService.storeFile(file);
+            dogToUpdate.setPhotoPath(fileName);
+        }
+
+        dogToUpdate.setName(name);
+        dogToUpdate.setBreed(breed);
+        dogToUpdate.setDateOfBirth(dateOfBirth);
+        dogToUpdate.setSize(size);
+        dogToUpdate.setStatus(status);
+        dogToUpdate.setGender(gender);
+        dogToUpdate.setNeutered(isNeutered);
+
+        dogRepository.save(dogToUpdate);
 
     }
 
