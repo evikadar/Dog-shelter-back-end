@@ -1,9 +1,6 @@
 package com.codecool.dogshelter.repository;
 
-import com.codecool.dogshelter.model.dog.Dog;
-import com.codecool.dogshelter.model.dog.DogForDogListPage;
-import com.codecool.dogshelter.model.dog.DogForDogPage;
-import com.codecool.dogshelter.model.dog.DogForShelterDogListPage;
+import com.codecool.dogshelter.model.dog.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -24,4 +21,6 @@ public interface DogRepository extends JpaRepository<Dog, Long> {
     @Query("SELECT d FROM Dog d WHERE d.shelter.id = :shelter_id AND d.status = 'AVAILABLE'")
     List<DogForDogPage> getDogsFilteredByShelterId(@Param("shelter_id") Long id);
 
+    @Query("select d from Dog d Where d.shelter.id = :shelter_id and d.id = :id")
+    DogForShelterDogPage getDogDetailsForShelterById(@Param("shelter_id") Long shelterId, @Param("id")Long id);
 }

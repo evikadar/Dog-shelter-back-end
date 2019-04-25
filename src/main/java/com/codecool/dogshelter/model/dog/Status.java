@@ -6,11 +6,11 @@ import java.util.Map;
 
 public enum Status {
     AVAILABLE("Looking for owner"),
-    ADOPTED("Adoption pending"),
-    PENDING("Adopted"),
+    PENDING("Adoption pending"),
+    ADOPTED("Adopted"),
     DEAD("Passed away");
 
-    private String statusName;
+    private final String statusName;
 
     Status(String statusName) {
         this.statusName = statusName;

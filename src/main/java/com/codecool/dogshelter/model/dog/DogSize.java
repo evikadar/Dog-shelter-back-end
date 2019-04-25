@@ -9,7 +9,7 @@ public enum DogSize {
     LARGE("Large"),
     EXTRA_LARGE("Extra large");
 
-    private String sizeName;
+    private final String sizeName;
 
     DogSize(String sizeName) {
         this.sizeName = sizeName;

@@ -50,6 +50,27 @@ public class Dog {
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @JsonIgnoreProperties({"dog"})
+    private Owner owner;
+
+
+    public String getBreedAsString() {
+        return breed.getStringValue();
+    }
+
+    public String getGenderAsString() {
+        return gender.getStringValue();
+    }
+
+    public String getSizeAsString() {
+        return size.getStringValue();
+    }
+
+    public String getStatusAsString() {
+        return status.getStringValue();
+    }
+
     public Long getAge() {
 
         if (dateOfBirth != null) {
