@@ -31,11 +31,15 @@ public class ShelterController {
             @RequestParam(name = "shelterAddressCountry", required = false) String country,
             @RequestParam(name = "shelterAddressCity", required = false) String city,
             @RequestParam(name = "shelterAddressAddress", required = false) String address,
-            @RequestParam(name = "shelterAddressZip", required = false) Integer zip,
+            @RequestParam(name = "shelterAddressZip", required = false) String zipString,
             @RequestParam(name = "description", required = false) String description
             ){
         Shelter shelterInDb = shelterRepository.getOne(id);
         Address addressInDb = shelterInDb.getAddress();
+        Integer zip = null;
+        if (!zipString.equals("")){
+            zip = Integer.valueOf(zipString);
+        }
 
 
         shelterInDb.setName(name);
